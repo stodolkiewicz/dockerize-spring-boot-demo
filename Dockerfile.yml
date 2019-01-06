@@ -1,0 +1,14 @@
+# Start with a base image of
+FROM openjdk:8-jre-stretch
+
+# Make port 8080 available to the world outside this container
+EXPOSE 8080
+
+# Path to the app JAR file
+ARG JAR_FILE=/target/dockerize-spring-boot-0.0.1-SNAPSHOT.jar
+
+# Add the above JAR to the container
+ADD ${JAR_FILE} dockerize-spring-boot.jar
+
+# Run the JAR on the start of the container
+ENTRYPOINT ["java","-jar","dockerize-spring-boot.jar"]
